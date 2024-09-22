@@ -1,0 +1,145 @@
+body{
+
+    background-image: url(Fondo\ Virtual\ Para\ Zoom\ Doodle\ Infantil\ Rosa\ y\ Amarillo.jpg);
+    object-fit: cover;
+}
+.formulario{
+    background-color:#9A9CEE;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+font-family: "Julius Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+.formulario h1{
+    color: #ffffff;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+}
+.input-b{
+    display: flex;
+    justify-content: center;
+    
+}
+.input-b input{
+    border-radius: 35px;
+        padding: 11px 60px;
+        border: none;
+        /* border-bottom: 1px solid black; */
+        background-color: #ffffff;
+        margin: 10px;
+    
+}
+.input-b input:hover{
+    box-shadow: #EEB7D0;
+}
+.input-b button{
+    border-radius: 35px;
+        padding: 11px 18px;
+        background-color: #ffffff4f;
+        border: none;
+        margin: 10px;
+        color: #ffffff;
+}
+.input-b button:hover{
+    background-color: #EEB7D0;
+}
+.listado{
+    /* background-color: antiquewhite; */
+    border-radius: 10px;
+    /* border: 1px solid black; */
+  display: flex;
+  flex-direction: column;
+}
+.tittle{
+    color: #9A9CEE;
+    font-size: 20px;
+font-family: "Julius Sans One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    justify-content: center;
+
+}
+/* .list-desor{
+    
+} */
+.carta{
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid gray; */
+}
+.tarea-tachada {
+    text-decoration: line-through;
+    color: gray;
+}
+.checkbox {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    border-radius: 50%;
+    margin-right: 15px;
+    cursor: pointer;
+    /* Cambia el cursor para indicar que es clickeable */
+}
+
+.color{
+    background-image: url(https://icones.pro/wp-content/uploads/2021/02/icone-de-tique-ronde-rose.png);
+    background-color: aqua;
+}
+.cambio-color{
+ /* background-image: url(x.png); */
+    background-color: #9a9cee;
+        margin: 10px;
+        padding: 18px;
+        color: #ffffff;
+        list-style: none;
+        width: 44%;
+        border-radius: 40px;
+        font-family: "Neucha", cursive;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 23px;
+}
+.cambio-color-b{
+    background-color: #EEB7D0;
+}
+.cambio-color img{
+    width: 20px;
+
+}
+.column{
+    display: flex;
+    justify-content: space-between;
+}
+#texto {
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: box-shadow 0.3s;
+}
+
+#texto:focus {
+    outline: none;
+    box-shadow: 0 0 10px 2px #EEB7D0;
+    border-color: #EEB7D0;
+}
+/* Efecto al pasar el mouse sobre el botón */
+.botones {
+    transition: transform 0.3s ease;
+}
+
+.botones:hover {
+    transform: scale(1.6);
+}
+.checkbox.completed {
+    background-image: url('https: //icones.pro/wp-content/uploads/2021/02/icone-de-tique-ronde-rose.png');
+    /* Imagen de check */
+    background-size: cover;
+    background-color: transparent;
+    /* Eliminar el color de fondo */
+}
+
+    

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="TodoList.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+<div class="formulario">
+    <h1>Todo List </h1>
+    <div class="input-b">
+        <input type="text" placeholder="Escribe tu tarea" id="texto">
+        <button onclick="" id="envio">Enviar</button>
+    </div>
+</div>
+<div class="listado">
+    <div class="tittle">
+        <h1>Lista de tareas</h1>
+    </div>
+    <div class="list-desor">
+        <ul class="carta" id="ul">
+              
+
+    </label>
+ 
+        </ul>
+    </div>
+</div>
+
+</body>
+
+
+<script>
+
+    //GUARDAR LOS GET ELEMENT EN UNA VARIABLE
+    const getText = document.getElementById("texto")
+    const getButton = document.getElementById("envio")
+    let tareasArray = JSON.parse(localStorage.getItem('tareas')) || [];
+
+ document.addEventListener('DOMContentLoaded', cargarTareas);
+
+    // PONER UN ESCUCHADOR AL BOTON EN CUYA FUNCION ESCUCHE LO QUE VIENE DEL INPUT
+    getButton.addEventListener("click", function (event) {
+        const tarea = getText.value
+
+        // 4.  PINTAR LAS TAREAS QUE VIENEN DEL INPUT EN LI
+        if (tarea !== '') {
+
+            tareasArray.push(tarea);
+            updateLocalStorage();
+
+            addTareaAlDOM(tarea);
+            getText.value=''; //limpiamos el input
+            
+        }
+           });
+
+        //creamos una función para agg tareas
+function addTareaAlDOM(tarea){
+
+    const tareaPintada = document.createElement('li')
+    const checkboxSpan = document.createElement('span');
+    const borrar=document.createElement('img');
+    const editar= document.createElement('img');
+    const ul = document.getElementById("ul");
+    const div=document.createElement('div');
+    const divf=document.createElement('div');
+    const contenedorPadre= document.createElement('div');
+    
+    editar.src='https://icons.veryicon.com/png/o/miscellaneous/blue-soft-fillet-icon/edit-173.png'
+    borrar.src='https://cdn-icons-png.flaticon.com/512/6861/6861362.png';
+    
+    tareaPintada.classList.add('cambio-color')
+    checkboxSpan.classList.add('checkbox');
+    borrar.classList.add('botones')
+    editar.classList.add('botones')
+    
+   const textoTarea = document.createElement('span');
+   textoTarea.textContent = tarea;
+    //el codigo va por orden
+  div.append(checkboxSpan,textoTarea);
+  divf.append(borrar,editar);
+  contenedorPadre.append(div,divf)
+  tareaPintada.appendChild(contenedorPadre); //Añadir el texto al LI
+// el .prepend hace lo mismo que el appendchild pero en vez de ingresarlo al final lo ingresa de primero 
+contenedorPadre.classList.add('column')
+
+    // 5.  PINTAR LOS LI EN UL
+    ul.appendChild(tareaPintada);
+    
+    checkboxSpan.addEventListener('click', function(){
+            //utilizamos classList, que nos permite acceder a las clases disponibles que tenemos dentro del css
+            tareaPintada.classList.toggle('tarea-tachada')
+            tareaPintada.classList.toggle('cambio-color-b')
+            if (checkboxSpan.classList.contains('completed')) {
+            checkboxSpan.classList.remove('completed');
+            checkboxSpan.style.backgroundImage = ''; // Quitar la imagen de check
+        } else {
+            checkboxSpan.classList.add('completed');
+            checkboxSpan.style.backgroundImage = "url('https://icones.pro/wp-content/uploads/2021/02/icone-de-tique-ronde-rose.png')"; // Cambiar a la imagen de check
+            checkboxSpan.style.backgroundSize = "cover"; // Asegurarse de que la imagen se ajuste
+        }
+            
+            //utilizamos toggle para filtrar si la variable tiene una clase o no, si tiene la clase 'tarea tachada' se la elimina, si no tiene esa clase, se la agg, cuando volvemos a pinchar sobre el checkbox lo que hace el toggle es que como ya tiene aplicada la clase 'tarea-tachada' ahora se la eliminará.
+        })
+    
+        borrar.addEventListener('click',function(){
+            ul.removeChild(tareaPintada);
+             eliminarTarea(tarea);  // Eliminar del array y actualizar LocalStorage
+        })
+          editar.addEventListener('click', function() {
+        const nuevoTexto = prompt("Edita tu tarea:", tarea); 
+        if (nuevoTexto !== null && nuevoTexto.trim() !== '') { 
+            textoTarea.textContent = nuevoTexto; // Actualiza el texto en el DOM
+
+            const index = tareasArray.indexOf(tarea); 
+            if (index !== -1) {
+                tareasArray[index] = nuevoTexto; 
+                updateLocalStorage(); 
+            }
+        }
+    });
+    }
+      // Función para eliminar tarea del array
+    function eliminarTarea(tarea) {
+        tareasArray = tareasArray.filter(t => t !== tarea);
+        updateLocalStorage();
+    }
+        // Función para actualizar el LocalStorage
+    function updateLocalStorage() {
+        localStorage.setItem('tareas', JSON.stringify(tareasArray));
+    }
+    // Función para cargar tareas al DOM desde el array (LocalStorage)
+    function cargarTareas() {
+        tareasArray.forEach(function (tarea) {
+            addTareaAlDOM(tarea);
+        });
+    }
+        
+ 
+</script>
+
+
+
+</html>
